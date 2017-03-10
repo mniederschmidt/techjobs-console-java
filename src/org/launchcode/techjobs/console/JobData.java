@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.console;
 
+import com.sun.deploy.util.StringUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -77,7 +78,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -104,7 +105,7 @@ public class JobData {
 
         for (HashMap<String, String> row : allJobs) {
             for (Map.Entry<String, String> field : row.entrySet()) {
-                if (field.getValue().contains(value)) {
+                if (field.getValue().toLowerCase().contains(value.toLowerCase())) {
                     jobs.add(row);
                     break;
                 }
