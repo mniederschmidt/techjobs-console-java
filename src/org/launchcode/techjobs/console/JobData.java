@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -78,6 +79,35 @@ public class JobData {
 
             if (aValue.contains(value)) {
                 jobs.add(row);
+            }
+        }
+
+        return jobs;
+    }
+
+    /**
+     * Returns results of searching the jobs data across all columns by value, using
+     * inclusion of the search term.
+     *
+     * For example, searching for employer "Enterprise" will include results
+     * with "Enterprise Holdings, Inc".
+     *
+     * @param value Value of the field to search for
+     * @return List of all jobs matching the criteria
+     */
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for (Map.Entry<String, String> field : row.entrySet()) {
+                if (field.getValue().contains(value)) {
+                    jobs.add(row);
+                    break;
+                }
             }
         }
 
