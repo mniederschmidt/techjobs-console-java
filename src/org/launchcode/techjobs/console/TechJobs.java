@@ -46,7 +46,6 @@ public class TechJobs {
 
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
-                    // Print list of skills, employers, etc
                     for (String item : results) {
                         System.out.println(item);
                     }
@@ -112,11 +111,15 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        for (HashMap<String, String> job : someJobs) {
-            for (Map.Entry<String, String> field : job.entrySet()) {
-                System.out.println(field.getKey() + ": " + field.getValue());
+        if (! someJobs.isEmpty()) {
+            for (HashMap<String, String> job : someJobs) {
+                for (Map.Entry<String, String> field : job.entrySet()) {
+                    System.out.println(field.getKey() + ": " + field.getValue());
+                }
+                System.out.println("*****");
             }
-            System.out.println("*****");
+        } else {
+            System.out.println("No results found");
         }
     }
 }
